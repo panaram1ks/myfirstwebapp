@@ -28,4 +28,12 @@ B3: Identifies correct View
 /WEB-INF/jsp/login.jsp => View Resolver
 B4: Executes view
 
+## Todo
+id
+username
+description
+targetDate
+done
+
+
 
