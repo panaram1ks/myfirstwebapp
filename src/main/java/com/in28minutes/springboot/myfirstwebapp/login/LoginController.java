@@ -2,6 +2,7 @@ package com.in28minutes.springboot.myfirstwebapp.login;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Autowired
+    private AuthenticationService authenticationService;
 
     //    http://localhost:8080/login?name=Ranga
     //    Model
@@ -38,6 +42,17 @@ public class LoginController {
                                   ModelMap model) {
         model.put("name", name);
         model.put("password", password);
-        return "welcome";
+
+
+        //Authentication
+        //valid name in28minutes
+        //valid password - dummy
+        if (authenticationService.authenticate(name, password)) {
+            return "welcome";
+        } else {
+            model.put("errorMessage", "Invalid Credentials! Please try again.");
+            return "login";
+        }
+
     }
 }
