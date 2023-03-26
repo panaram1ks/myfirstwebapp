@@ -9,3 +9,6 @@ My first HTML page with body
 </body>
 
 </html>
+
+#JSP default path in springboot application
+/src/main/resources/META-INF/resources/META-INF/jsp/
