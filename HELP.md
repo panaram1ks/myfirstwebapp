@@ -38,5 +38,8 @@ done
 ## TodoController
 listTodos.jsp
 
+## Request vs Model vs Session
+
+
 
 
