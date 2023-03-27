@@ -6,21 +6,22 @@
     <title>List Todos Page</title>
 </head>
 <body>
-<div>Welcome to ${name}</div>
-<hr>
-<h1>Your Todos</h1>
+<div class="container">
+    <div>Welcome to ${name}</div>
+    <hr>
+    <h1>Your Todos</h1>
 
-<%--<div>Your Todos are: ${todos}</div>--%>
-<table>
-    <thead>
+    <%--<div>Your Todos are: ${todos}</div>--%>
+    <table class="table">
+        <thead>
         <tr>
             <th>id</th>
             <th>Description</th>
             <th>Target Date</th>
             <th>Is done</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <c:forEach items="${todos}" var="todo">
             <tr>
                 <td>${todo.id}</td>
@@ -29,8 +30,9 @@
                 <td>${todo.done}</td>
             </tr>
         </c:forEach>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 
 <script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
