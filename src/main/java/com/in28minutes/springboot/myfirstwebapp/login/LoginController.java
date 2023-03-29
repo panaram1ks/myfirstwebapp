@@ -11,46 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("name")
 public class LoginController {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Autowired
-    private AuthenticationService authenticationService;
-
-    //    http://localhost:8080/login?name=Ranga
-    //    Model
-    @RequestMapping("loginTest")
-    public String gotoLoginPageTest(@RequestParam(value = "name", required = false) String name, ModelMap model) {
-        model.addAttribute("name", name);
-
-        logger.debug("Request param is {}", name);
-        logger.info("Print param in info level {}", name);
-        System.out.println("Request param is " + name); // NOT RECOMMENDED FOR PRODUCTION CODE
-        return "loginTest1";
-    }
-
     //GET, POST
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String gotoLoginPage() {
-        return "login";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String gotoWelcomePage(ModelMap model) {
+        model.put("name", "in28minutes");
+        return "welcome";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String gotoWelcomePage(@RequestParam String name,
-                                  @RequestParam String password,
-                                  ModelMap model) {
-        model.put("name", name);
-        model.put("password", password);
 
-
-        //Authentication
-        //valid name in28minutes
-        //valid password - dummy
-        if (authenticationService.authenticate(name, password)) {
-            return "welcome";
-        } else {
-            model.put("errorMessage", "Invalid Credentials! Please try again.");
-            return "login";
-        }
-
-    }
 }
