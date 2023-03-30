@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import java.util.function.Function;
+
 @Configuration
 public class SpringSecurityConfiguration {
     //LDAP or DataBase
@@ -15,7 +17,9 @@ public class SpringSecurityConfiguration {
 
     @Bean
     public InMemoryUserDetailsManager createUserDetailsManager(){
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
+        Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
+        UserDetails userDetails = User.builder()
+                .passwordEncoder(passwordEncoder)
                 .username("in28minutes")
                 .password("dummy")
                 .roles("USER", "ADMIN")
@@ -23,8 +27,10 @@ public class SpringSecurityConfiguration {
         return new InMemoryUserDetailsManager(userDetails);
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+
 }
