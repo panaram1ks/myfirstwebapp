@@ -16,7 +16,7 @@ My first HTML page with body
 /src/main/resources/META-INF/resources/META-INF/jsp/
 
 ## Login JSP
-/login => com.in28minutes.springboot.myfirstwebapp.login.LoginController => login.jsp
+/login => com.in28minutes.springboot.myfirstwebapp.welcome.WelcomeController => login.jsp
 
 ## localhost:8080/login
 B1: Identifies correct Controller method
